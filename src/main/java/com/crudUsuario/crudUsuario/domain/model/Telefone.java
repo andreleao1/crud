@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Telefone {
 
@@ -18,8 +20,9 @@ public class Telefone {
 
 	private String numero;
 
+	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name = "usuario_id", insertable = false, updatable = false, nullable = false)
+	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
 	public Telefone() {
