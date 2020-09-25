@@ -40,7 +40,13 @@ public class TelefoneService {
 		return null;
 	}
 
-	public void remover(Long telefoneId) {
-		telefoneRepository.deleteById(telefoneId);
+	public Boolean remover(Long telefoneId) {
+		Optional<Telefone> telefone = telefoneRepository.findById(telefoneId);
+
+		if (telefone.isPresent()) {
+			telefoneRepository.deleteById(telefone.get().getId());
+			return true;
+		}
+		return false;
 	}
 }

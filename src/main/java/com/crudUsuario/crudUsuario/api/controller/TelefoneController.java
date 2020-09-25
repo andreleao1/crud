@@ -60,12 +60,9 @@ public class TelefoneController {
 		return ResponseEntity.notFound().build();
 	}
 
-	@DeleteMapping("{telefoneId}")
+	@DeleteMapping("/{telefoneId}")
 	public ResponseEntity<Telefone> remover(@PathVariable Long telefoneId) {
-		Optional<Telefone> telefoneEncontrado = telefoneService.buscar(telefoneId);
-
-		if (telefoneEncontrado.isPresent()) {
-			telefoneService.remover(telefoneId);
+		if(telefoneService.remover(telefoneId)) {
 			return ResponseEntity.noContent().build();
 		}
 

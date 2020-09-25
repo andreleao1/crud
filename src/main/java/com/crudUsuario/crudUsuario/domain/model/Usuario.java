@@ -3,9 +3,7 @@ package com.crudUsuario.crudUsuario.domain.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +21,7 @@ public class Usuario {
 	private String nome;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "usuario", targetEntity = Telefone.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "usuario")
 	private Set<Telefone> telefones = new HashSet<Telefone>();
 
 	public Usuario() {
