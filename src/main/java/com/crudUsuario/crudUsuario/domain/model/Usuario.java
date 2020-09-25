@@ -1,12 +1,25 @@
 package com.crudUsuario.crudUsuario.domain.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Usuario {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String nome;
 
-	private Telefone telefone;
+	@OneToMany(mappedBy = "usuario")
+	private Set<Telefone> telefones = new HashSet<>();
 
 	public Usuario() {
 
@@ -28,17 +41,17 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public Telefone getTelefone() {
-		return telefone;
+	public Set<Telefone> getTelefones() {
+		return telefones;
 	}
 
-	public void setTelefone(Telefone telefone) {
-		this.telefone = telefone;
+	public void setTelefones(Set<Telefone> telefones) {
+		this.telefones = telefones;
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", telefone=" + telefone + "]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", telefones=" + telefones + "]";
 	}
 
 	@Override
@@ -65,5 +78,4 @@ public class Usuario {
 			return false;
 		return true;
 	}
-
 }
